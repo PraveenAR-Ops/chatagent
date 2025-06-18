@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aesthetic Record Chat - Full Screen Glass UI with FAQs</title>
+  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html { width: 100%; height: 100%; font-family: 'Segoe UI', sans-serif; }
+    body {
+      background: url('https://images.unsplash.com/photo-1605902711622-cfb43c4436b8?auto=format&fit=crop&w=1950&q=80') no-repeat center/cover;
+      overflow: hidden;
+    }
+    .overlay {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(20px);
+      display: flex;
+      color: #1a1a1a;
+    }
+    .sidebar-left {
+      width: 60px;
+      background: rgba(255,255,255,0.3);
+      display: flex; flex-direction: column;
+      align-items: center; padding: 16px 0;
+      border-top-right-radius: 12px;
+      border-bottom-right-radius: 12px;
+    }
+    .sidebar-left .icon {
+      width: 32px; height: 32px;
+      margin: 12px 0;
+      background: rgba(255,255,255,0.6);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .sidebar-left .icon:hover { background: rgba(255,255,255,0.8); }
+    .chat-panel {
+      flex: 1;
+      margin: 40px;
+      background: rgba(255,255,255,0.6);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .side-panel {
+      width: 300px;
+      margin: 40px;
+      background: rgba(255,255,255,0.6);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+    .side-header {
+      padding: 16px;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    .side-content {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+    }
+    .side-content ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .side-content ul li {
+      margin: 8px 0;
+      font-size: 14px;
+      cursor: pointer;
+      color: #007bff;
+    }
+    .side-content ul li:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <div class="sidebar-left">
+      <div class="icon">🏠</div>
+      <div class="icon">💬</div>
+      <div class="icon">📚</div>
+      <div class="icon">⚙️</div>
+    </div>
+
+    <!-- n8n Chat will render inside this chat-panel -->
+    <div class="chat-panel" id="n8n-chat">
+      <!-- Chat widget loads here -->
+    </div>
+
+    <div class="side-panel">
+      <div class="side-header">Frequently Asked Questions</div>
+      <div class="side-content">
+        <ul>
+          <li>Setting Up a Custom Booking Portal Subdomain</li>
+          <li>How to Update a DNS Record Using a CNAME to Point Your URL to AR Online Booking</li>
+          <li>Link Quickpay Invoices to Procedures</li>
+          <li>Dynamic Pricing: Configuring Membership Pricing for Inventory</li>
+          <li>Getting Started with Your RepeatMD Integration</li>
+          <li>Add Traceability Information to a Procedure</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Embed the n8n chat widget here -->
+  <script type="module">
+    import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+    createChat({
+      webhookUrl: 'https://harper.app.n8n.cloud/webhook/ee087da8-01cd-49a3-abcd-a8c63039367a/chat', // 🔁 Replace this
+      target: '#n8n-chat',
+      mode: 'fullscreen',
+      showWelcomeScreen: true,
+      initialMessages: [
+        'Hi there! 👋',
+        'Welcome to Aesthetic Record support. How can I help you today?'
+      ]
+    });
+  </script>
+</body>
+</html>
